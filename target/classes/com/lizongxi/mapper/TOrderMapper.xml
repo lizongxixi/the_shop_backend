@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lizongxi.mapper.TOrderMapper">
+  <resultMap id="BaseResultMap" type="com.lizongxi.pojo.TOrder">
+    <id column="to_id" jdbcType="BIGINT" property="toId" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="order_price" jdbcType="BIGINT" property="orderPrice" />
+    <result column="order_flag" jdbcType="SMALLINT" property="orderFlag" />
+    <result column="order_user" jdbcType="VARCHAR" property="orderUser" />
+    <result column="order_tel" jdbcType="VARCHAR" property="orderTel" />
+    <result column="order_addr" jdbcType="VARCHAR" property="orderAddr" />
+    <result column="order_create_time" jdbcType="DATE" property="orderCreateTime" />
+    <result column="order_update_time" jdbcType="DATE" property="orderUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    to_id, order_id, user_id, order_price, order_flag, order_user, order_tel, order_addr, 
+    order_create_time, order_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where to_id = #{toId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_order
+    where to_id = #{toId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lizongxi.pojo.TOrder">
+    insert into t_order (to_id, order_id, user_id, 
+      order_price, order_flag, order_user, 
+      order_tel, order_addr, order_create_time, 
+      order_update_time)
+    values (#{toId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{orderPrice,jdbcType=BIGINT}, #{orderFlag,jdbcType=SMALLINT}, #{orderUser,jdbcType=VARCHAR}, 
+      #{orderTel,jdbcType=VARCHAR}, #{orderAddr,jdbcType=VARCHAR}, #{orderCreateTime,jdbcType=DATE}, 
+      #{orderUpdateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lizongxi.pojo.TOrder">
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="toId != null">
+        to_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderPrice != null">
+        order_price,
+      </if>
+      <if test="orderFlag != null">
+        order_flag,
+      </if>
+      <if test="orderUser != null">
+        order_user,
+      </if>
+      <if test="orderTel != null">
+        order_tel,
+      </if>
+      <if test="orderAddr != null">
+        order_addr,
+      </if>
+      <if test="orderCreateTime != null">
+        order_create_time,
+      </if>
+      <if test="orderUpdateTime != null">
+        order_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="toId != null">
+        #{toId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderPrice != null">
+        #{orderPrice,jdbcType=BIGINT},
+      </if>
+      <if test="orderFlag != null">
+        #{orderFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="orderUser != null">
+        #{orderUser,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTel != null">
+        #{orderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddr != null">
+        #{orderAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreateTime != null">
+        #{orderCreateTime,jdbcType=DATE},
+      </if>
+      <if test="orderUpdateTime != null">
+        #{orderUpdateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lizongxi.pojo.TOrder">
+    update t_order
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderPrice != null">
+        order_price = #{orderPrice,jdbcType=BIGINT},
+      </if>
+      <if test="orderFlag != null">
+        order_flag = #{orderFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="orderUser != null">
+        order_user = #{orderUser,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTel != null">
+        order_tel = #{orderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddr != null">
+        order_addr = #{orderAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreateTime != null">
+        order_create_time = #{orderCreateTime,jdbcType=DATE},
+      </if>
+      <if test="orderUpdateTime != null">
+        order_update_time = #{orderUpdateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where to_id = #{toId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lizongxi.pojo.TOrder">
+    update t_order
+    set order_id = #{orderId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      order_price = #{orderPrice,jdbcType=BIGINT},
+      order_flag = #{orderFlag,jdbcType=SMALLINT},
+      order_user = #{orderUser,jdbcType=VARCHAR},
+      order_tel = #{orderTel,jdbcType=VARCHAR},
+      order_addr = #{orderAddr,jdbcType=VARCHAR},
+      order_create_time = #{orderCreateTime,jdbcType=DATE},
+      order_update_time = #{orderUpdateTime,jdbcType=DATE}
+    where to_id = #{toId,jdbcType=BIGINT}
+  </update>
+</mapper>

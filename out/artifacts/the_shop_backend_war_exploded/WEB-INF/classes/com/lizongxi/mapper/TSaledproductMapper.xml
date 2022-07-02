@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lizongxi.mapper.TSaledproductMapper">
+  <resultMap id="BaseResultMap" type="com.lizongxi.pojo.TSaledproduct">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="pname" jdbcType="VARCHAR" property="pname" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="saledcount" jdbcType="BIGINT" property="saledcount" />
+    <result column="saleprice" jdbcType="BIGINT" property="saleprice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pid, pname, price, saledcount, saleprice
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_saledproduct
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_saledproduct
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lizongxi.pojo.TSaledproduct">
+    insert into t_saledproduct (id, pid, pname, 
+      price, saledcount, saleprice
+      )
+    values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{pname,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{saledcount,jdbcType=BIGINT}, #{saleprice,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lizongxi.pojo.TSaledproduct">
+    insert into t_saledproduct
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="pname != null">
+        pname,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="saledcount != null">
+        saledcount,
+      </if>
+      <if test="saleprice != null">
+        saleprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="pname != null">
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="saledcount != null">
+        #{saledcount,jdbcType=BIGINT},
+      </if>
+      <if test="saleprice != null">
+        #{saleprice,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lizongxi.pojo.TSaledproduct">
+    update t_saledproduct
+    <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="pname != null">
+        pname = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="saledcount != null">
+        saledcount = #{saledcount,jdbcType=BIGINT},
+      </if>
+      <if test="saleprice != null">
+        saleprice = #{saleprice,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lizongxi.pojo.TSaledproduct">
+    update t_saledproduct
+    set pid = #{pid,jdbcType=BIGINT},
+      pname = #{pname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      saledcount = #{saledcount,jdbcType=BIGINT},
+      saleprice = #{saleprice,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

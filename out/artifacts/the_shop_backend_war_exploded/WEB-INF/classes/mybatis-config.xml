@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+    plugins在配置文件中的位置必须符合要求，否则会报错，顺序如下:
+    properties, settings,
+    typeAliases, typeHandlers,
+    objectFactory,objectWrapperFactory,
+    plugins?,
+    environments, databaseIdProvider, mappers
+    -->
+
+
+    <!--配置数据源，交给spring去做，mybatis只做两件事情
+        1.取别名，这里配置别名是将包下的类的别名改为它的小写
+        2.mapper配置文件进行注册
+    -->
+    <!--添加日志-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!-- 使用驼峰命名法转换字段。 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.lizongxi.pojo"/>
+    </typeAliases>
+
+    <plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
+            <property name="helperDialect" value="mysql"/>
+            <property name="reasonable" value="true"/>
+
+        </plugin>
+    </plugins>
+<!--    <mappers>-->
+<!--        <mapper class="com.lizongxi.mapper.TProductMapper"></mapper>-->
+<!--    </mappers>-->
+
+</configuration>

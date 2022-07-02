@@ -23,6 +23,7 @@ public class ProductController {
     private IProductService productService;
     @RequestMapping("list")
     public List<TProduct> getProducts(){
+        
         return productService.getProducts();
     }
 }
